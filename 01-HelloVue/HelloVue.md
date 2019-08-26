@@ -144,4 +144,4 @@ Vue.component('custom-item',{
 
 以上是简单的入门示例，感觉和React及小程序的写法大同小异。
 
-[github代码]()
+[github代码](https://github.com/carvetime/study-vue/blob/master/01-HelloVue/index.html)
