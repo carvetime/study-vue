@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>    
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <div id="app2">
+        <span v-bind:title="message">
+                鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </span>
+    </div>
+
+    <div id="app3">
+        <p v-if="show">显示</p>
+    </div>
+
+    <div id="app4">
+        <ol>
+            <li v-for="item in list">
+                {{ item }}
+            </li>
+        </ol>
+    </div>
+
+    <div id="app5">
+        <p>{{number}}</p>
+        <button v-on:click="increase">点击增加</button>
+        <button v-on:click="reduce">点击减少</button>
+    </div>
+
+    <div id="app6">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+    </div>
+
+    <div id="app7">
+        <ol>
+            <custom-item v-for="item in wareList" v-bind:data="item" v-bind:key="item.id">
+            </custom-item>
+        </ol>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                message: 'Hello Vue 2'
+            }
+        })
+
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                show: false
+            }
+        })
+
+        setTimeout(() => {
+            app3.show = true
+        }, 1000);
+
+
+        var app4 = new Vue({
+            el: '#app4',
+            data: {
+                list: ["javascript","css","html","vue"]
+            }
+        })
+
+        var app5 = new Vue({
+            el:'#app5',
+            data:{
+                number:1
+            },
+            methods:{
+                increase: function(){
+                    this.number += 1;
+                },
+                reduce: function(){
+                    this.number -= 1;
+                }
+            }
+        })
+
+       
+
+        var app6 = new Vue({
+            el: '#app6',
+            data: {
+                message: 'Hello Vue!'
+            }
+        })
+
+        setTimeout(() => {
+            app6.message = "Changed"
+        }, 2000);
+        
+
+        Vue.component('custom-item',{
+            props:['data'],
+            template: '<li>{{data.text}}</li>'
+        })
+
+        var app7 = new Vue({
+            el:'#app7',
+            data:{
+                wareList:[
+                    {id:0,text:'vegetable'},
+                    {id:1,text:'biscuit'}
+                ]
+            }
+        })
+
+    </script>
+</body>
+</html>
