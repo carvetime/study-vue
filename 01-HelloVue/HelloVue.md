@@ -21,6 +21,8 @@
  </script>
 ```
 
+<!-- more -->
+
 ##  属性绑定
 ```js
  <div id="app2">
