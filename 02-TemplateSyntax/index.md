@@ -4,7 +4,7 @@ vue和react小程序的模板语法基本都差不多，下面来简单写几个
 ## 数据绑定
 
 通过声明data每次修改data里面的值，视图层都会跟着渲染。
-```js
+```html
 <div id="app">
         <span>message: {{message}}</span>
 </div>
@@ -18,7 +18,7 @@ var app = new Vue({
 ```
 
 通过声明添加v-once后，视图只会渲染一次，以后data变化都不会改变视图
-```js
+```html
 <div id="app2">
         <span v-once>message: {{message}}</span>
 </div>
@@ -38,7 +38,7 @@ setTimeout(() => {
 <!-- more -->
 
 有时候需要直接渲染html标签，那么可以使用v-html，但是使用需谨慎，渲染不安全的html字符串容易导致XSS攻击。
-```js
+```html
 <div id="app3">
         <span v-html="headHtml"></span>
 </div>
@@ -52,7 +52,7 @@ var app3 = new Vue({
 ```
 
 有时候我们需要对html标签的某些属性进行直接绑定，这时候可以使用v-bind指令
-```js
+```html
 <div id="app4">
     <span v-bind:id="dynamicId">dynamic id</span>
     <span v-bind:style="dynamicStyle">dynamic style</span>
@@ -70,8 +70,8 @@ var app4 = new Vue({
 ```
 ## 表达式
 
-使用{{}}可以使用javascript的表达式，但是只能用单个表达式。
-```js
+使用双括号可以使用javascript的表达式，但是只能用单个表达式。
+```html
 <div id="app5">
     {{number + 1}}
     {{number == 1 ? 'true' : 'false'}}
@@ -90,7 +90,7 @@ var app5 = new Vue({
 ## 指令
 
 使用v-on指令可以为标签添加点击方法
-```js
+```html
 <div id="app6">
     <div v-on:click="onClick" style="background-color: yellow; display: inline-block">click me</div>
 </div>
@@ -106,7 +106,7 @@ var app6 = new Vue({
 ```
 
 使用v-bind:[]指令可以动态的修改绑定的属性名
-```js
+```html
 <div id="app7">
     // 注意这里attributeName会被转成小写attributename
     <input type="text" v-bind:[attributeName]="123" />
@@ -121,7 +121,7 @@ var app7 = new Vue({
 
 ```
 指令还可以加修饰符，比如添加一个.prevent修饰符可以阻止原来标签的动作
-```js
+```html
 <div id="app8">
     <a href="http:www.baidu.com" v-on:click="click1" >universally click </a>
     <a href="http:www.baidu.com" v-on:click.prevent="click2" > prevent click </a>
@@ -141,7 +141,7 @@ var app8 = new Vue({
 ```
 
 为了简洁方便指令还可以使用@和:的简写方式来表示
-```js
+```html
 <div id="app9">
     <div @click="onClick" style="background-color: yellow; display: inline-block">shorthand of v-on</div>
     <input type="text"  :value="message" />

@@ -7,7 +7,7 @@
 ```
 
 ## 声明渲染
-```js
+```html
 <div id="app">
         {{ message }}
 </div>
@@ -24,7 +24,7 @@
 <!-- more -->
 
 ##  属性绑定
-```js
+```html
  <div id="app2">
         <span v-bind:title="message">
                 鼠标悬停几秒钟查看此处动态绑定的提示信息！
@@ -40,7 +40,7 @@
 ```
 
 ## 条件语句
-```js
+```html
 <div id="app3">
         <p v-if="show">显示</p>
 </div>
@@ -59,7 +59,7 @@ setTimeout(() => {
 ```
 
 ## 循环语句
-```js
+```html
 <div id="app4">
         <ol>
             <li v-for="item in list">
@@ -77,7 +77,7 @@ setTimeout(() => {
 ```
 
 ## 点击事件
-```js
+```html
 <div id="app5">
         <p>{{number}}</p>
         <button v-on:click="increase">点击增加</button>
@@ -101,7 +101,7 @@ var app5 = new Vue({
 ```
 
 ## 双向绑定
-```js
+```html
 <div id="app6">
         <p>{{message}}</p>
         <input type="text" v-model="message">
@@ -120,7 +120,7 @@ setTimeout(() => {
 ```
 
 ## 自定义组件
-```js
+```html
 <div id="app7">
         <ol>
             <custom-item v-for="item in wareList" v-bind:data="item" v-bind:key="item.id">
