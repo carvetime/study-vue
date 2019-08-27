@@ -161,6 +161,6 @@ var app9 = new Vue({
 
 ```
 
-[github代码]()
+[github代码](https://github.com/carvetime/study-vue/blob/master/02-TemplateSyntax/TemplateSyntax.html)
 
 
