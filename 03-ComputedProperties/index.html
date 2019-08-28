@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>  
+</head>
+<body>
+    <div id="app">
+        {{message.split('').reverse().join('')}}
+    </div>
+
+    <div id="app2">
+            {{reverseMessage()}}
+            {{dataFormat()}}
+    </div>
+
+    <div id="app3">
+            {{reverseMessage}}
+            {{dataFormat}}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                message:"HelloComputedProperties"
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app2',
+            data:{
+                message:'HelloComputedProperties',
+            },
+            methods:{
+                reverseMessage:function(){
+                    var date = new Date()
+                    return this.message.split('').reverse().join('') + date;
+                },
+                dataFormat: function(){
+                    // alert('execute method')
+                    return  new Date()
+                }
+            }
+        })
+
+        setTimeout(() => {
+            app2.message = 'hello'
+        }, 2000);
+
+        var app3 = new Vue({
+            el: '#app3',
+            data:{
+                message:'HelloComputedProperties',
+            },
+            computed:{
+                reverseMessage:function(){
+                    return this.message.split('').reverse().join('');
+                },
+                dataFormat: function(){
+                    // alert('execute cuompute method')
+                    return  new Date()
+                }
+            }
+        })
+
+        setTimeout(() => {
+            app3.message = 'hello'
+        }, 2000);
+    </script>
+</body>
+</html>
