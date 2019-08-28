@@ -15,6 +15,8 @@ var app = new Vue({
 })
 ```
 
+<!-- more -->
+
 ## 函数表达式
 我们之前了解到模板表达式只能写简单的单行表达式，复杂的多行都不支持，这时候我们可以在表达式内调用方法
 
@@ -77,4 +79,4 @@ setTimeout(() => {
 ```
 这时候我们发现修改message只会熏染与message相关的计算属性方法，而不会引起dataFormate方法调用及渲染。
 
-[github代码]()
+[github代码](https://github.com/carvetime/study-vue/blob/master/03-ComputedProperties/index.html)
