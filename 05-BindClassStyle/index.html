@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style type="text/css">
+        .active{
+            background-color: red;
+        }
+        .maxSize{
+            font-size: 50px;
+        }
+        .center{
+            text-align: center;
+        }
+        div{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-bind:class="{active: isActive}">
+        style1
+    </div>
+
+    <div id="app2" class="center" v-bind:class="{active: isActive, 'maxSize': isMax}">
+            style2
+    </div>
+
+    <div id="app3" v-bind:class="classObject">
+        style3
+    </div>
+
+    <div id="app4" v-bind:class="classObject">
+        style4
+    </div>
+
+    <div id="app5" v-bind:class="[active,maxSize]">
+            style5
+    </div>
+
+    <div id="app6" v-bind:class="[flag == 2 ? active : '' ]">
+            style6
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                isActive: true
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app2',
+            data:{
+                isActive: true,
+                isMax: true
+            }
+        })
+
+        var app3 = new Vue({
+            el: '#app3',
+            data:{
+                classObject:{
+                    active:true,
+                    'maxSize': true
+                }
+            }
+        })
+
+        var app4 = new Vue({
+            el: '#app4',
+            data:{
+                num1:1,
+                num2:1,
+            },
+            computed:{
+                classObject: function(){
+                    return {
+                        active: this.num1 > 10,
+                        maxSize: this.num2 > 10
+                    }
+                }
+            }
+        })
+
+        setTimeout(() => {
+            app4.num1 = 11
+        }, 1000);
+
+        setTimeout(() => {
+            app4.num2 = 11
+        }, 2000);
+
+        var app5 = new Vue({
+            el: '#app5',
+            data:{
+                active:'active',
+                maxSize:'maxSize'
+            }
+        })
+
+        var app6 = new Vue({
+            el: '#app6',
+            data:{
+                flag: 2,
+                active:'active'
+            }
+        })
+
+
+
+    </script>
+</body>
+</html>
