@@ -128,3 +128,5 @@ var app6 = new Vue({
 }) 
 </script>
 ```
+
+[github代码](https://github.com/carvetime/study-vue/blob/master/05-BindClassStyle/index.html)
