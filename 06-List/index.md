@@ -158,4 +158,4 @@ var app3 = new Vue({
 </script>
 ```
 
-[github代码]()
+[github代码](https://github.com/carvetime/study-vue/blob/master/06-List/index.html)
