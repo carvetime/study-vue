@@ -1,4 +1,4 @@
-对于一些共用的模块功能，vue提供了组件予以复用
+对于一些共用的模块功能，vue提供了组件方法予以复用
 
 ## 组件复用
 ```html
@@ -198,4 +198,4 @@ var vue07 = new Vue({
 </script>
 ```
 
-[github代码]()
+[github代码](https://github.com/carvetime/study-vue/blob/master/08-Component/index.html)

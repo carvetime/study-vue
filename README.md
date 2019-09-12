@@ -6,3 +6,4 @@
 5. [样式绑定](https://github.com/carvetime/study-vue/blob/master/05-BindClassStyle/index.md)
 6. [列表遍历](https://github.com/carvetime/study-vue/blob/master/06-List/index.md)
 7. [事件处理](https://github.com/carvetime/study-vue/blob/master/07-Event/index.md)
+8. [组件基础](https://github.com/carvetime/study-vue/blob/master/08-Component/index.md)
