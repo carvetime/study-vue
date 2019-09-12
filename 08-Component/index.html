@@ -8,59 +8,168 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
-    <div id="demo01" >
-        <p>{{counter}}</p>
-        <button v-on:click="counter += 1">click me</button>
-        <button v-on:click="add">click me</button>
-        <button v-on:click="showHello('hello')">click me</button>
-        <button v-on:click="showHi('hi',$event)">click me</button>
-    </div>
+    
+<div id="demo01">
+    <counter></counter>
+    <counter></counter>
+</div>
 
-    <div id="demo02" v-on:click="click0">
-        <button v-on:click.once="click1">click me</button>
-        <button v-on:click.prevent="click2">click me</button>
-    </div>
+<div id="demo02">
+        <news title='今日头条新闻' reporter='小明' content='小区野狗咬人'></news>
+        <news title='昨日头条新闻' reporter='小王' content='这个夏天真热'></news>
+</div>
 
+<div id="demo03">
+        <news2 v-bind:ndata="ndata" ></news2>
+</div>
 
-    <script>
-        var app = new Vue({
-            el: '#demo01',
-            data:{
-                counter: 0
-            },
-            methods:{
-                add:function(event){
-                    this.counter += 2;
-                },
-                showHello:function(message){
-                    alert(message);
-                },
-                showHi:function(message,event){
-                    alert(message+JSON.stringify(event));
-                }
-            }
+<div id="demo04" :style="{ backgroundColor: color,fontSize: size + 'px' }">
+        <news3 v-bind:ndata="ndata" v-on:change-color="color = $event" v-on:change-size="onChangeSize"></news3>
+</div>
 
-        })
+<div id="demo05">
+    <input v-model="searchText">
+    <input v-bind:value="searchText" v-on:input="searchText = $event.target.value">
+    <my-input v-model="searchText"></my-input>
+    <p>{{searchText}}</p>
 
-        var app = new Vue({
-            el: '#demo02',
-            methods:{
-                click0:function(event){
-                    alert('parent click event');
-                },
-                click1:function(event){
-                    alert('alert once');
-                },
-                showHello:function(message){
-                    alert(message);
-                },
-                showHi:function(message,event){
-                    alert(message+JSON.stringify(event));
-                }
-            }
+</div>
 
-        })
+<div id="demo06">
+    <my-user name='小明' age='18'>
+        <p>性别：男<p>
+    </my-user>
+</div>
 
-    </script>
+<div id="demo07">
+    <button v-on:click="switchComponent(1)">切换到动态组件1</button>
+    <button v-on:click="switchComponent(2)">切换到动态组件2</button>
+    <button v-on:click="switchComponent(3)">切换到动态组件3</button>
+    <component v-bind:is="currentComponent"></component>
+</div>
+
+<script>
+Vue.component('counter',{
+data:function(){
+    return {
+        count: 0
+    }
+},
+template: '<button v-on:click="count++">click {{count}} times</button>'
+})
+var vue01 = new Vue({
+    el: '#demo01'
+})
+
+Vue.component('news',{
+    props:['title','reporter','content'],
+    template: `<div>
+                <h1>标题:{{title}}</h1> <h3>{{reporter}}</h3> <p>{{content}}</p>
+                </div>
+                `
+})
+
+Vue.component('news2',{
+    props:['ndata'],
+    template:`<div>
+                <h1>标题:{{ndata.title}}</h1> <h3>{{ndata.eporter}}</h3> <p>{{ndata.content}}</p>
+                </div>
+                `
+})
+
+Vue.component('news3',{
+    props:['ndata'],
+    template:`<div>
+                <h1>标题:{{ndata.title}}</h1> <h3>{{ndata.eporter}}</h3> <p>{{ndata.content}}</p>
+                <button v-on:click="$emit('change-color','yellow')">点击改变组件外层的颜色</botton>
+                <button v-on:click="$emit('change-size',5)">点击改变字体大小</botton>
+                </div>
+                `
+})
+
+Vue.component('my-input',{
+    props:['value'],
+    template:`<input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    >`
+})
+
+Vue.component('my-user',{
+    props:['name','age'],
+    template:`
+        <div>
+            <p>用户名:{{name}}</p>
+            <p>年龄:{{age}}</p>
+            <slot></slot>
+        </div>
+    `
+})
+
+Vue.component('dynamic-component1',{
+    template:'<h1>动态组件组件1</h1>'
+})
+
+Vue.component('dynamic-component2',{
+    template:'<h1>动态组件组件2</h1>'
+})
+
+Vue.component('dynamic-component3',{
+    template:'<h1>动态组件组件3</h1>'
+})
+
+var vue02 = new Vue({
+    el: '#demo02'
+})
+
+var vue03 = new Vue({
+    el: '#demo03',
+    data:{
+        ndata:{
+            title:'今日头条新闻2',reporter:'小明2',content:'小区野狗咬人2'
+        }
+    }
+})
+
+var vue04 = new Vue({
+    el: '#demo04',
+    data:{
+        ndata:{
+            title:'今日头条新闻3',reporter:'小明3',content:'小区野狗咬人3'
+        },
+        color: '#bdbdbd',
+        size: 30
+    },
+    methods:{
+        onChangeSize:function(fontSize){
+            this.size += fontSize;
+        }
+    }
+})
+
+var vue05 = new Vue({
+    el: '#demo05',
+    data:{
+        searchText:'hello'
+    }
+})
+
+var vue06 = new Vue({
+    el: '#demo06'
+})
+
+var vue07 = new Vue({
+    el: '#demo07',
+    data:{
+        currentComponent:'dynamic-component1'
+    },
+    methods:{
+        switchComponent:function(index){
+            this.currentComponent = 'dynamic-component' + index
+        }
+    }
+})
+
+</script>
 </body>
 </html>
